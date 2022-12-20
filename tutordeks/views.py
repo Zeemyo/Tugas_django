@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from multiprocessing import context
+from django.http import HttpResponse
 
 def index(request):
     context = {
@@ -12,3 +13,8 @@ def index(request):
 
 def about(request):
     return render("Ini About")
+
+def articles(request,year):
+    year = year
+    str = year
+    return HttpResponse(year)

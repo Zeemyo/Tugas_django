@@ -17,6 +17,7 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
+from django.urls import path, re_path
 
 from . import views
 
@@ -25,4 +26,6 @@ urlpatterns = [
     path('', views.index),
     path('about/', views.about),
     path('admin/', admin.site.urls),
+    re_path(r'^articles/(?P<year>[0-9]{4})/$',
+views.articles),
 ]
