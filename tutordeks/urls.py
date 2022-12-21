@@ -22,10 +22,9 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    path('blog/', include('blog.urls')),
-    path('', views.index),
-    path('about/', views.about),
+    path('blog/', include('blog.urls', namespace='blog')), 
+    path('form/', include('form.urls', namespace='form')),
     path('admin/', admin.site.urls),
-    re_path(r'^articles/(?P<year>[0-9]{4})/$',
-views.articles),
+    path('', views.index, name='index'),
+    re_path(r'^articles/(?P<year>[0-9]{4})/$', views.articles),
 ]

@@ -32,3 +32,4 @@ def recent(request):
     #}  
     #return render(request, 'blog/index.html', context)
 # Create your views here
+

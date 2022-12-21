@@ -1,0 +1,84 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Submit Data</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'form/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous" />
+  </head>
+
+  <body style="background-color: #ffa7a6;">
+    <div class="login-root">
+      <div
+        class="box-root flex-flex flex-direction--column"
+        style="min-height: 100vh; flex-grow: 1">
+        <div class="loginbackground box-background--white padding-top--64">
+          <div class="loginbackground-gridContainer">
+            <div
+              class="box-root flex-flex"
+              style="grid-area: top / start / 8 / end">
+              <div
+                class="box-root"
+                style="
+                  background-image: linear-gradient(
+                    white 0%,
+                    rgb(247, 250, 252) 33%
+                  );
+                  flex-grow: 1;
+                "></div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="box-root padding-top--24 flex-flex flex-direction--column"
+          style="flex-grow: 1; z-index: 9">
+          <div
+            class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
+          </div>
+          <div class="formbg-outer">
+            <div class="formbg">
+              <div class="formbg-inner padding-horizontal--48">
+                <h1 style="text-align: center; color: #e10300; font: bold;">
+                  <a rel="dofollow">Submit Data Murid</a>
+                  <ul></ul>
+                </h1>
+                <form method="post" id="stripe-login">
+                  {% csrf_token %}
+                  <div class="field padding-bottom--24">
+                    <input type="nama" name="nama" placeholder="Nama" id="nama" />
+                  </div>
+                  <div class="field padding-bottom--24">
+                    <input type="alamat" name="alamat" placeholder="Alamat" id="alamat" />
+                  </div>
+                  <div class="field padding-bottom--24">
+                    <input type="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir" id="tgl_lahir" />
+                  </div>
+                  <div class="field padding-bottom--24">
+                    <input type="email" name="email" placeholder="Email" id="email" />
+                  </div>
+                  <div class="field padding-bottom--24">
+                    <input type="submit" name="submit" value="Submit" />
+                  </div>
+                  <a class="btn btn-warning container" href="/" role="button" style="box-shadow: black;"
+                    >Back to Home</a
+                  >
+                </form>
+              </div>
+            </div>
+            <div class="footer-link padding-top--24">
+              <div
+                class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
