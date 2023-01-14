@@ -24,6 +24,7 @@ from . import views
 urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')), 
     path('form/', include('form.urls', namespace='form')),
+    path('edit/', include('form.urls', namespace='form')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     re_path(r'^articles/(?P<year>[0-9]{4})/$', views.articles),

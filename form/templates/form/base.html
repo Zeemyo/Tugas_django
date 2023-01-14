@@ -58,7 +58,7 @@
                     <input type="alamat" name="alamat" placeholder="Alamat" id="alamat" />
                   </div>
                   <div class="field padding-bottom--24">
-                    <input type="tgl_lahir" name="tgl_lahir" placeholder="Tanggal Lahir" id="tgl_lahir" />
+                    <input type="date" name="tgl_lahir" placeholder="Tanggal Lahir" id="tgl_lahir" />
                   </div>
                   <div class="field padding-bottom--24">
                     <input type="email" name="email" placeholder="Email" id="email" />
@@ -76,6 +76,36 @@
               <div
                 class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
             </div>
+            <div class="container">
+              <h3>Detail Siswa</h3>
+              <table class="table" border="1" cellpadding="10" cellspacing="10" style="align-content: center;">
+                  <tr>
+                    <th scope="row">No{{ forloop.counter }}</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Alamat</th>
+                      <th scope="col">Tanggal Lahir</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Action</th>
+                  </tr>
+                  <tbody>
+                    {% block content-1 %} {% for v in post %}
+                    <tr>
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{v.nama}}</td>
+                      <td>{{v.alamat}}</td>
+                      <td>{{v.tgl_lahir}}</td>
+                      <td>{{v.email}}</td>
+                      <td>
+                        <a class="btn btn-warning" href="{% url 'form:edit' v.id %}"
+                          >Update</a>
+                        <a class="btn btn-danger" href="{% url 'form:delete' v.id %}"
+                          >Hapus</a>
+                      </td>
+                    </tr>
+                    {% endfor %} {% endblock content-1 %}
+                </tbody>
+              </table>
+          </div>
           </div>
         </div>
       </div>
