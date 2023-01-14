@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_
 from django.http import HttpResponse
 from django.template import loader
 from .models import Post
-from .forms import PostForm
+
 
 def index(request):
     db = Post.objects.all()
@@ -54,26 +54,48 @@ def recent(request):
 
 
 def edit(request, id):
-#  form = Post.objects.get(id=id)
-#  template = loader.get_template('update.html')
-#  context = {
-#     'forms': form,
-#   }
-#  return HttpResponse(template.render(context, request))
+    form = Post.objects.get(id=id)
+    data = {
+         'nama': form.nama,
+         'alamat': form.alamat,
+         'tgl_lahir': form.tgl_lahir,
+         'email': form.email,
+     }
+     
+    if request.method == 'POST':
+        if request.POST.get('nama') and request.POST.get('alamat') and request.POST.get('tgl_lahir') and request.POST.get('email'):
+            post = Post()
+            post.nama = request.POST.get('nama')
+            post.alamat = request.POST.get('alamat')
+            post.tgl_lahir = request.POST.get('tgl_lahir')
+            post.email = request.POST.get('email')
+            post.save()
 
-    context = {}
+ 
+    return render(request, 'form/update.html', {'form': form})
 
-    obj = get_object_or_404(Post, id = id)
+    # updt = Post.objects.get(id=id)
+    # data = {
+    #     'nama': updt.nama,
+    #     'alamat': updt.alamat,
+    #     'tgl_lahir': updt.tgl_lahir,
+    #     'email': updt.email
+    # }
+    
+    # classform = forms.classform(request.POST or None, intitial=data, instance=updt)
 
-    form = PostForm(request.POST or None, instance = obj)
+    # if request.method == 'POST':
+    #     if classform.is_valid():
+    #         classform.save()
+    #         return HttpResponseRedirect('daftar.html')
 
-    if form:
-        form.save()
-        return HttpResponseRedirect("/edit/" + id)
 
-    context["form"] = form
+    # context = {
+    #     'heading': 'updt',
+    #     'classform': classform
+    # }
 
-    return render(request, "update.html", context)
+    # return render(request, 'base.html', context)
     
     # forms = Post.objects.get(id=id)
     # Post.objects.filter(id=id)
